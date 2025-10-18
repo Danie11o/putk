@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awarie pendrive'ów - Diagnostyka sprzętu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+           
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Strona główna</a></li>
+                <li><a href="ssd.html">Awarie SSD</a></li>
+                <li><a href="pendrive.html" class="active">Awarie Pendrive</a></li>
+                <li><a href="zapobieganie.html">Zapobieganie</a></li>
+              
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fade-in">Awarie pendrive'ów USB</h1>
+            <p class="subtitle fade-in">Problemy z przenośnymi pamięciami flash i metody ich identyfikacji</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="content-layout">
+                    <div class="content-main">
+                        <h2 class="section-title">Uszkodzenie złącza USB</h2>
+                        <div class="content-block fade-in-scroll">
+                            <img src="https://images.unsplash.com/photo-1609552283279-735b3bcd599c?w=1200&q=80" alt="Złącze USB pendrive" class="content-img">
+                            <p>Najczęstsza przyczyna awarii pendrive'ów to <strong>mechaniczne uszkodzenie złącza</strong>. Pendrive wystający z portu USB laptopa lub komputera jest narażony na zginanie, wykrzywianie lub całkowite odłamanie wtyczki. Złącze USB składa się z czterech styków: VCC (zasilanie 5V), D+ i D- (linie danych), GND (masa). Uszkodzenie któregokolwiek z nich uniemożliwia komunikację z systemem.</p>
+                            <div class="info-box error">
+                                <strong>Skutek:</strong> Pendrive nie jest wykrywany przez system, pojawia się dźwięk podłączenia i natychmiastowego odłączenia urządzenia USB, lub Windows pokazuje komunikat "Urządzenie USB nie zostało rozpoznane".
+                            </div>
+                            <p>Próba podłączenia uszkodzonego pendrive'a może spowodować <strong>zwarcie</strong>, które uszkodzi port USB w komputerze lub przepali bezpiecznik na płycie głównej. Jeśli złącze jest wyraźnie wygięte lub pęknięte, nie należy podłączać urządzenia do komputera.</p>
+                        </div>
+
+                        <h2 class="section-title">Przegrzanie kontrolera</h2>
+                        <div class="content-block fade-in-scroll">
+                            <p>Kontroler pendrive'a to układ scalony (zazwyczaj kwadratowy chip widoczny na PCB) odpowiedzialny za komunikację między interfejsem USB a pamięcią NAND. Podczas długotrwałego, intensywnego zapisu lub odczytu kontroler się nagrzewa. W tanich pendrive'ach, pozbawionych radiatora i z kiepską konstrukcją obudowy, temperatura może przekroczyć 80°C, co prowadzi do <strong>data scrambling</strong> – danych zostających zaszyfrowanych lub zniekształconych podczas operacji.</p>
+                            <div class="info-box warning">
+                                <strong>Objaw:</strong> Pliki kopiowane na pendrive'a są uszkodzone po odłączeniu, system plików wymaga naprawy, lub pendrive przestaje działać po kilku minutach intensywnego użytkowania.
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Wyczerpanie cykli P/E i degradacja NAND</h2>
+                        <div class="content-block fade-in-scroll">
+                            <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?w=1200&q=80" alt="Mikroelektronika" class="content-img">
+                            <p>Pendrive'y konsumenckie używają tańszych układów NAND TLC (3 bity na komórkę) lub QLC (4 bity na komórkę) o wytrzymałości 500-1500 cykli P/E. Po przekroczeniu tej wartości komórki zaczynają tracić zdolność do utrzymywania ładunku, co prowadzi do <strong>bit rot</strong> – stopniowej degradacji zapisanych danych. W przeciwieństwie do SSD, pendrive'y mają prostsze algorytmy wear leveling, co oznacza nierównomierne zużycie komórek.</p>
+                            <div class="code-block">
+                                <code>
+Typowa żywotność pendrive'a:<br>
+- 32GB TLC: ~15-30 TB zapisanych danych (przy 500-1000 cykli P/E)<br>
+- 128GB QLC: ~25-50 TB zapisanych danych (przy 500 cykli P/E)<br>
+- Intensywne użycie (10 GB/dzień): 4-8 lat
+                                </code>
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Korupcja systemu plików</h2>
+                        <div class="content-block fade-in-scroll">
+                            <p>Nagłe odłączenie pendrive'a podczas operacji zapisu (bez bezpiecznego usunięcia) powoduje uszkodzenie <strong>FAT (File Allocation Table)</strong> lub <strong>MBR (Master Boot Record)</strong>. System plików przechowuje metadane o lokalizacji plików na dysku – jeśli te dane zostaną uszkodzone, pliki stają się niedostępne mimo że fizycznie nadal istnieją na pamięci flash.</p>
+                            <div class="info-box warning">
+                                <strong>Napraw:</strong> W systemie Windows użyj narzędzia CHKDSK w wierszu poleceń: <code>chkdsk F: /f /r</code> (gdzie F: to litera pendrive'a). W systemie Linux: <code>fsck /dev/sdb1</code>.
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Zainfekowanie malware</h2>
+                        <div class="content-block fade-in-scroll">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80" alt="Cyberbezpieczeństwo" class="content-img">
+                            <p>Pendrive'y często przenoszą wirusy typu <strong>autorun</strong>, które automatycznie uruchamiają złośliwe oprogramowanie po podłączeniu do komputera. Wirusy mogą ukrywać pliki użytkownika, tworzyć fałszywe skróty lub całkowicie uszkodzić system plików, symulując awarię sprzętową. Szczególnie narażone są pendrive'y używane w różnych komputerach (np. w pracowniach szkolnych).</p>
+                            <div class="info-box error">
+                                <strong>Ochrona:</strong> Wyłącz funkcję autorun w Windows, regularnie skanuj pendrive'a antywirusem (Windows Defender, Malwarebytes), i formatuj urządzenie przed pierwszym użyciem po zakupie.
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Niska jakość produkcji</h2>
+                        <div class="content-block fade-in-scroll">
+                            <p>Tanie pendrive'y z nieznanych marek często wykorzystują <strong>chipy NAND recyklingowane</strong> z innych urządzeń lub odrzuty fabryczne (chipy, które nie przeszły kontroli jakości). Takie układy mają już częściowo wyczerpane cykle P/E lub zawierają defekty, co prowadzi do przedwczesnej awarii. Ponadto, niektórzy nieuczciwi producenci stosują oszustwo: pendrive o deklarowanej pojemności 128 GB w rzeczywistości zawiera chip 8 GB z modyfikowanym firmware, który "okłamuje" system operacyjny.</p>
+                        </div>
+                    </div>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-card fade-in-scroll">
+                            <h3>Sygnały ostrzegawcze</h3>
+                            <ul>
+                                <li>Pendrive nagrzewa się podczas użycia</li>
+                                <li>Samoczynne rozłączanie z systemu</li>
+                                <li>Komunikat o konieczności formatowania</li>
+                                <li>Brak możliwości zapisu nowych plików</li>
+                                <li>Dziwne dźwięki przy podłączeniu/odłączeniu</li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-card fade-in-scroll">
+                            <h3>Testowanie pendrive'a</h3>
+                            <ul>
+                                <li><strong>H2testw:</strong> test pojemności i wykrywanie fake'ów</li>
+                                <li><strong>Check Flash:</strong> test błędów zapisu/odczytu</li>
+                                <li><strong>USB Flash Benchmark:</strong> test wydajności</li>
+                                <li><strong>ChipGenius:</strong> informacje o kontrolerze</li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-card fade-in-scroll">
+                            <h3>Odzyskiwanie danych</h3>
+                            <ul>
+                                <li>Recuva - odzyskiwanie skasowanych plików</li>
+                                <li>PhotoRec - odzyskiwanie zdjęć i dokumentów</li>
+                                <li>TestDisk - naprawa partycji i MBR</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Daniel Prajsnar klasa 3j</p>
+            <p class="footer-year">2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

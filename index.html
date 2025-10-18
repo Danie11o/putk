@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awarie sprzętu komputerowego - SSD i Pendrive</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active">Strona główna</a></li>
+                <li><a href="ssd.html">Awarie SSD</a></li>
+                <li><a href="pendrive.html">Awarie Pendrive</a></li>
+                <li><a href="zapobieganie.html">Zapobieganie</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="fade-in">Awarie i usterki sprzętu komputerowego</h1>
+            <p class="subtitle fade-in">Analiza problemów z dyskami SSD i pamięciami USB</p>
+            <a href="#intro" class="cta-button fade-in">Poznaj szczegóły</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="intro" class="section intro-section">
+            <div class="container">
+                <h2 class="section-title">Wprowadzenie</h2>
+                <div class="intro-grid">
+                    <div class="intro-card fade-in-scroll">
+                        <div class="card-icon">⚡</div>
+                        <h3>Pamięć Flash NAND</h3>
+                        <p>Dyski SSD i pendrive'y wykorzystują pamięć flash NAND do przechowywania danych. W przeciwieństwie do tradycyjnych dysków HDD nie zawierają ruchomych elementów mechanicznych, co zwiększa ich odporność na wstrząsy, a także skraca czas dostępu do danych.</p>
+                    </div>
+                    <div class="intro-card fade-in-scroll">
+                        <div class="card-icon">🧬</div>
+                        <h3>Architektura układów</h3>
+                        <p>Każde urządzenie zawiera kontroler, który zarządza operacjami zapisu i odczytu oraz pamięć flash składającą się z komórek przechowujących ładunek elektryczny reprezentujący dane binarne.</p>
+                    </div>
+                    <div class="intro-card fade-in-scroll">
+                        <div class="card-icon">📊</div>
+                        <h3>Cykle P/E</h3>
+                        <p>Komórki pamięci mają ograniczoną liczbę cykli Program/Erase (P/E). SSD klasy MLC wytrzymują 3000-10000 cykli, TLC 1000-3000, a pendrive'y konsumenckie zazwyczaj 500-3000 cykli przed degradacją.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section tech-comparison">
+            <div class="container">
+                <h2 class="section-title">Porównanie technologii</h2>
+                <div class="comparison-container">
+                    <div class="comparison-card fade-in-scroll">
+                        <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=800&q=80" alt="Dysk SSD" class="comparison-img">
+                        <h3>Dyski SSD</h3>
+                        <ul class="tech-list">
+                            <li><span class="highlight">Kontroler wielokanałowy</span> - obsługa równoległego zapisu na wielu chipach pamięci</li>
+                            <li><span class="highlight">DRAM cache</span> - pamięć buforowa przyspieszająca operacje (w modelach premium)</li>
+                            <li><span class="highlight">Wear leveling</span> - równomierne rozłożenie cykli zapisu na wszystkie komórki</li>
+                            <li><span class="highlight">Over-provisioning</span> - rezerwowa przestrzeń (7-28%) wydłużająca żywotność</li>
+                            <li><span class="highlight">Prędkość</span> - SATA III do 550 MB/s, NVMe do 7000+ MB/s</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card fade-in-scroll">
+                        <img src="5.png" alt="Pendrive" class="comparison-img">
+                        <h3>Pendrive USB</h3>
+                        <ul class="tech-list">
+                            <li><span class="highlight">Prosty kontroler</span> - podstawowe funkcje zapisu/odczytu bez zaawansowanych algorytmów</li>
+                            <li><span class="highlight">Brak cache</span> - operacje bezpośrednio na pamięci flash</li>
+                            <li><span class="highlight">Ograniczony wear leveling</span> - prostsze algorytmy zarządzania żywotnością</li>
+                            <li><span class="highlight">Minimalne over-provisioning</span> - maksymalizacja dostępnej przestrzeni</li>
+                            <li><span class="highlight">Prędkość</span> - USB 2.0 do 35 MB/s, USB 3.2 do 400 MB/s</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section stats-section">
+            <div class="container">
+                <h2 class="section-title">Kluczowe statystyki</h2>
+                <div class="stats-grid">
+                    <div class="stat-card fade-in-scroll">
+                        <div class="stat-number">40%</div>
+                        <p class="stat-desc">awarii pendrive'ów to uszkodzenia mechaniczne złącza USB</p>
+                    </div>
+                    <div class="stat-card fade-in-scroll">
+                        <div class="stat-number">80°C</div>
+                        <p class="stat-desc">krytyczna temperatura powodująca uszkodzenia pamięci flash</p>
+                    </div>
+                    <div class="stat-card fade-in-scroll">
+                        <div class="stat-number">3-5 lat</div>
+                        <p class="stat-desc">typowa żywotność SSD konsumenckiego przy normalnym użytkowaniu</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta-section">
+            <div class="container">
+                <h2>Poznaj szczegóły poszczególnych awarii</h2>
+                <div class="cta-grid">
+                    <a href="ssd.html" class="cta-card fade-in-scroll">
+                        <div class="cta-icon">🚨</div>
+                        <h3>Awarie dysków SSD</h3>
+                        <p>Przegrzewanie kontrolera, bad blocki, corruption firmware</p>
+                    </a>
+                    <a href="pendrive.html" class="cta-card fade-in-scroll">
+                        <div class="cta-icon">⚠️</div>
+                        <h3>Awarie pendrive'ów</h3>
+                        <p>Uszkodzenia złącza USB, degradacja komórek NAND</p>
+                    </a>
+                    <a href="zapobieganie.html" class="cta-card fade-in-scroll">
+                        <div class="cta-icon">🛡️</div>
+                        <h3>Zapobieganie</h3>
+                        <p>Dobre praktyki i metody ochrony danych</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Daniel Prajsnar klasa 3j</p>
+            <p class="footer-year">2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

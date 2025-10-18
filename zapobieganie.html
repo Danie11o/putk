@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapobieganie awariom - Diagnostyka sprzętu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Strona główna</a></li>
+                <li><a href="ssd.html">Awarie SSD</a></li>
+                <li><a href="pendrive.html">Awarie Pendrive</a></li>
+                <li><a href="zapobieganie.html" class="active">Zapobieganie</a></li>
+               
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fade-in">Zapobieganie awariom</h1>
+            <p class="subtitle fade-in">Dobre praktyki wydłużające żywotność urządzeń flash</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Dla dysków SSD</h2>
+                <div class="practices-grid">
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">01</div>
+                        <h3>Monitoring SMART</h3>
+                        <p>Regularnie sprawdzaj parametry SMART używając CrystalDiskInfo lub narzędzi producenta. Zwracaj szczególną uwagę na <strong>Reallocated Sectors Count</strong>, <strong>Available Reserved Space</strong> i <strong>Temperature</strong>. Jeśli którykolwiek parametr pokazuje ostrzeżenie, natychmiast wykonaj backup danych.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">02</div>
+                        <h3>Chłodzenie dysku</h3>
+                        <p>Upewnij się, że dysk SSD NVMe ma zainstalowany radiator (większość płyt głównych B550/B650 i nowszych ma go fabrycznie). Dla dysków M.2 w laptopach rozważ użycie <strong>thermal pads</strong>. Temperatura pracy nie powinna przekraczać 70°C – powyżej tego progu następuje throttling i przyspieszenie degradacji.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">03</div>
+                        <h3>Unikaj zapełniania dysku</h3>
+                        <p>Pozostaw minimum 10-20% wolnej przestrzeni na dysku SSD. Pełny dysk wymusza częstsze operacje garbage collection, co zwiększa liczbę cykli P/E i skraca żywotność. Dodatkowo, pełny dysk działa wolniej z powodu braku miejsca na operacje cache'owania.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">04</div>
+                        <h3>Włącz TRIM</h3>
+                        <p>TRIM to komenda ATA, która informuje dysk, które bloki danych nie są już używane i mogą zostać wyczyszczone. W Windows TRIM jest włączony domyślnie dla dysków SATA i NVMe. Sprawdź status: otwórz CMD jako administrator i wpisz <code>fsutil behavior query DisableDeleteNotify</code>. Wynik "0" oznacza, że TRIM jest aktywny.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">05</div>
+                        <h3>Stabilne zasilanie</h3>
+                        <p>Używaj markowego zasilacza o mocy odpowiedniej dla twojego systemu (kalkulator mocy: OuterVision PSU Calculator). Rozważ zakup UPS o mocy minimum 600VA z funkcją AVR (Automatic Voltage Regulation), które ochroni system przed przepięciami i nagłymi wyłączeniami prądu.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">06</div>
+                        <h3>Aktualizuj firmware</h3>
+                        <p>Producenci regularnie wydają aktualizacje firmware poprawiające stabilność, wydajność i bezpieczeństwo. Przed aktualizacją wykonaj pełny backup danych. Firmware aktualizuje się przez narzędzia producenta (Samsung Magician, Crucial Storage Executive, WD Dashboard) – nigdy nie przerywaj procesu i nie wyłączaj komputera podczas aktualizacji.</p>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Dla pendrive'ów USB</h2>
+                <div class="practices-grid">
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">01</div>
+                        <h3>Bezpieczne usuwanie</h3>
+                        <p>Zawsze używaj funkcji "Bezpiecznie usuń sprzęt" przed odłączeniem pendrive'a. W Windows 10/11 kliknij ikonę USB w zasobniku systemowym. To wymusza zakończenie wszystkich operacji zapisu i cache'u, minimalizując ryzyko korupcji danych. Alternatywnie możesz wyłączyć write caching dla pendrive'a w Menedżerze urządzeń.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">02</div>
+                        <h3>Ochrona mechaniczna</h3>
+                        <p>Używaj pendrive'ów z wysuwanymi wtyczkami lub solidną osłoną złącza USB. Unikaj zostawiania pendrive'a podłączonego do laptopa podczas transportu – to najczęstsza przyczyna mechanicznych uszkodzeń. Rozważ pendrive'y w metalowej obudowie (Kingston DataTraveler Elite G2) zamiast plastikowych.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">03</div>
+                        <h3>Nie jako pamięć operacyjna</h3>
+                        <p>Unikaj funkcji Windows <strong>ReadyBoost</strong>, która używa pendrive'a jako rozszerzenia RAM. To drastycznie zwiększa liczbę cykli zapisu i skraca żywotność urządzenia. Zamiast tego zainwestuj w dodatkową pamięć RAM, jeśli system działa wolno.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">04</div>
+                        <h3>Regularny backup</h3>
+                        <p>Pendrive'y są najmniej niezawodnym medium do długoterminowego przechowywania danych. Używaj ich wyłącznie do transportu plików, a krytyczne dane przechowuj na <strong>zewnętrznych dyskach HDD/SSD z backupem w chmurze</strong> (Google Drive, Dropbox, OneDrive). Zasada 3-2-1: 3 kopie danych, na 2 różnych mediach, 1 kopia poza domem.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">05</div>
+                        <h3>Formatowanie FAT32 vs exFAT</h3>
+                        <p><strong>FAT32:</strong> maksymalny rozmiar pliku 4 GB, kompatybilny ze wszystkimi systemami. <strong>exFAT:</strong> brak limitu rozmiaru pliku, ale wymaga nowszych systemów (Windows XP SP2+, macOS 10.6.5+). Dla pendrive'ów poniżej 32 GB używaj FAT32, dla większych exFAT. NTFS na pendrive'ach przyspiesza zużycie przez journaling.</p>
+                    </div>
+                    <div class="practice-card fade-in-scroll">
+                        <div class="practice-number">06</div>
+                        <h3>Skanowanie antywirusem</h3>
+                        <p>Po podłączeniu pendrive'a z obcego komputera natychmiast zeskanuj go antywirusem przed otwarciem jakichkolwiek plików. W Windows Defender: kliknij prawym na ikonę pendrive'a → Skanuj za pomocą programu Microsoft Defender. To zapobiegnie infekcji wirusami autorun i ransomware.</p>
+                    </div>
+                </div>
+
+                <div class="best-practices-summary fade-in-scroll">
+                    <h2 class="section-title">Najważniejsze zasady</h2>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span class="summary-icon">📊</span>
+                            <p>Monitoruj stan zdrowia urządzeń przez narzędzia SMART – profilaktyka jest tańsza niż odzyskiwanie danych</p>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-icon">💾</span>
+                            <p>Jeśli dane są ważne, stosuj zasadę backupu 3-2-1: trzy kopie danych, na dwóch różnych nośnikach, jedna poza domem (np. w chmurze).</p>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-icon">🌡️</span>
+                            <p>Kontroluj temperaturę dysków – przegrzanie to wróg numer jeden pamięci flash</p>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-icon">⚡</span>
+                            <p>Stabilne zasilanie i ochrona przed przepięciami chronią integralność danych</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Daniel Prajsnar klasa 3j</p>
+            <p class="footer-year">2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

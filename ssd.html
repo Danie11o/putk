@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awarie dysków SSD - Diagnostyka sprzętu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Strona główna</a></li>
+                <li><a href="ssd.html" class="active">Awarie SSD</a></li>
+                <li><a href="pendrive.html">Awarie Pendrive</a></li>
+                <li><a href="zapobieganie.html">Zapobieganie</a></li>
+               
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fade-in">Awarie dysków SSD</h1>
+            <p class="subtitle fade-in">Analiza przyczyn i objawów uszkodzeń pamięci półprzewodnikowej</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="content-layout">
+                    <div class="content-main">
+                        <h2 class="section-title">Przegrzewanie kontrolera i układów pamięci</h2>
+                        <div class="content-block fade-in-scroll">
+                            <img src="1.png" alt="Wnętrze komputera z dyskiem SSD" class="content-img">
+                            <p>Kontroler SSD to mikroprocesor zarządzający wszystkimi operacjami dysku. Podczas intensywnej pracy (ciągły zapis dużych plików, operacje na bazach danych) temperatura kontrolera może przekroczyć 70-80°C, co prowadzi do <strong>throttlingu</strong> – automatycznego ograniczenia wydajności w celu obniżenia temperatury. Długotrwałe narażenie na wysokie temperatury przyspiesza degradację komórek NAND i może uszkodzić kontroler, powodując awarię całego dysku.</p>
+                            <div class="info-box warning">
+                                <strong>Objaw:</strong> Nagłe spadki wydajności podczas długich operacji zapisu, system wykrywa dysk jako tylko do odczytu lub dysk całkowicie przestaje być rozpoznawany przez BIOS.
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Korupcja firmware i błędy aktualizacji</h2>
+                        <div class="content-block fade-in-scroll">
+                            <p>Firmware to oprogramowanie wbudowane w kontroler SSD, odpowiadające za wear leveling, garbage collection, ECC (Error Correction Code) i komunikację z systemem operacyjnym. Błędy podczas aktualizacji firmware – np. utrata zasilania w trakcie procesu – mogą spowodować <strong>brick'owanie</strong> dysku, czyli całkowitą utratę funkcjonalności. Również błędy w algorytmach wear leveling prowadzą do nierównomiernego zużycia komórek, skracając żywotność dysku.</p>
+                            <div class="info-box error">
+                                <strong>Objaw:</strong> Dysk nie jest wykrywany po restarcie, pojawia się komunikat o błędzie systemu plików, lub dane stają się niedostępne mimo prawidłowego podłączenia.
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Bad blocki i degradacja komórek NAND</h2>
+                        <div class="content-block fade-in-scroll">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80" alt="Chip pamięci NAND" class="content-img">
+                            <p>Bad blocki to fragmenty pamięci flash, które utraciły zdolność do niezawodnego przechowywania danych. Każdy dysk SSD opuszczający fabrykę ma niewielką liczbę bad blocków, które firmware oznacza jako nieużywalne. Z czasem liczba bad blocków rośnie wskutek wyczerpania cykli P/E, zakłóceń elektromagnetycznych lub <strong>retention failure</strong> – utraty ładunku elektrycznego w komórkach nieużywanych przez długi czas. Gdy liczba bad blocków przekracza zasoby over-provisioning, dysk zaczyna tracić dane.</p>
+                            <div class="code-block">
+                                <code>
+SMART Attribute 05: Reallocated Sector Count - zwiększa się przy wykryciu bad blocków<br>
+SMART Attribute 184: End-to-End Error - błędy integralności danych<br>
+SMART Attribute 187: Reported Uncorrectable Errors - błędy nienaprawialne przez ECC
+                                </code>
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Skoki napięcia i problemy z zasilaniem</h2>
+                        <div class="content-block fade-in-scroll">
+                            <p>Nagłe odcięcie zasilania podczas operacji zapisu może spowodować <strong>data corruption</strong> – uszkodzenie zapisywanych danych lub metadanych systemu plików. Przepięcia w sieci elektrycznej (np. podczas burzy) mogą przepalić bezpieczniki na PCB dysku lub uszkodzić kontroler. Niestabilne zasilanie z taniej jednostki PSU prowadzi do błędów zapisu i skraca żywotność komórek.</p>
+                            <div class="info-box warning">
+                                <strong>Zapobieganie:</strong> Używaj UPS (Uninterruptible Power Supply) do ochrony przed nagłymi przerwami zasilania i przepięciami. Inwestuj w markowe zasilacze z certyfikatem 80 Plus Gold lub wyższym.
+                            </div>
+                        </div>
+
+                        <h2 class="section-title">Utrata danych przy braku zasilania</h2>
+                        <div class="content-block fade-in-scroll">
+                            <p>Komórki NAND przechowują dane jako ładunek elektryczny uwięziony w warstwie izolującej (floating gate). Z czasem, zwłaszcza w wysokich temperaturach, ładunek ten ucieka, co prowadzi do <strong>retention errors</strong>. Dyski SSD niewykorzystywane przez kilka miesięcy lub lat mogą stracić dane, szczególnie dyski TLC i QLC o większej gęstości bitów na komórkę. Producenci specyfikują retention time na 1-2 lata dla dysków konsumenckich przy temperaturze pokojowej.</p>
+                        </div>
+
+                        <h2 class="section-title">Defekty produkcyjne</h2>
+                        <div class="content-block fade-in-scroll">
+                            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1200&q=80" alt="Linia produkcyjna elektroniki" class="content-img">
+                            <p>Choć rzadkie, wady produkcyjne mogą obejmować niskiej jakości układy scalone, błędy w lutowaniu PCB lub niewłaściwą kalibrację kontrolera. Takie defekty zazwyczaj ujawniają się w pierwszych tygodniach użytkowania – stąd tzw. <strong>infant mortality</strong> (wczesna śmiertelność). Producenci oferują gwarancję 3-5 lat, ale pierwszych 30 dni jest najbardziej krytyczne dla wykrycia wad fabrycznych.</p>
+                        </div>
+                    </div>
+
+                    <aside class="sidebar">
+                        <div class="sidebar-card fade-in-scroll">
+                            <h3>Narzędzia diagnostyczne</h3>
+                            <ul>
+                                <li>CrystalDiskInfo - monitoring SMART</li>
+                                <li>Samsung Magician - dla dysków Samsung</li>
+                                <li>Crucial Storage Executive</li>
+                                <li>Western Digital Dashboard</li>
+                                <li>HD Sentinel Pro</li>
+                            </ul>
+                        </div>
+                        <div class="sidebar-card fade-in-scroll">
+                            <h3>Parametry SMART</h3>
+                            <ul>
+                                <li><strong>Attr 05:</strong> Reallocated Sectors</li>
+                                <li><strong>Attr 09:</strong> Power-On Hours</li>
+                                <li><strong>Attr 0C:</strong> Power Cycle Count</li>
+                                <li><strong>Attr C2:</strong> Temperature</li>
+                                <li><strong>Attr E7:</strong> Available Reserved Space</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Daniel Prajsnar klasa 3j</p>
+            <p class="footer-year">2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
